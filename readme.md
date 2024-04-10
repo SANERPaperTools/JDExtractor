@@ -1,8 +1,11 @@
 # JDExtractor
 
 This repository hosts JDExtractor, a tool designed for automatically extracting defect-related methods and null propagation paths from Java programs.
-JDExtractor automatically extract null propagation paths from sources to sink. Sources are the methods that introduce the defect, while sink is the defect method where an exception is triggered.
-JDExtractor relies on WALA which currently supports the analysis of programs compiled with up to Java 8. JDExtractor requires Java Runtime Environment version 11.
+
+JDExtractor automatically extract null propagation paths from sources to sink. Sources are the methods that introduce the defect, while sink is the method where an exception is triggered.
+
+JDExtractor relies on WALA which currently supports the analysis of programs compiled with up to Java 8. JDExtractor requires Java Runtime Environment version 11. Please download open-jdk 8 and place it in the "/usr/lib/jvm/java-8-openjdk-amd64".
+
 Contributions to this repository are highly encouraged and welcomed!
 
 ## Table of Contents
@@ -12,39 +15,40 @@ Contributions to this repository are highly encouraged and welcomed!
 
 
 ## Using the Tool
-Here, we use "lang:33" in Defects4J as an example to intruduce the usage of JDExtractor. Please ensure that you have already added Defect4J's executables to your PATH.
-1. Clone JDExtractor:
+Here, we use Lang:33 in Defects4J as an example to intruduce the usage of JDExtractor. Please ensure that you have already added Defect4J's executables to your PATH.
+1. Clone JDExtractor.
 ```
-git clone xxxxx
+git clone https://github.com/ISSTAPaperTools/JDExtractor.git
 ```
-2. Checkout a buggy source code version (commons lang, bug 33, buggy version):
+2. Checkout a buggy source code version (commons lang, bug 33, buggy version).
 
 ```
 defects4j checkout -p Lang -v 33b -w ./lang-33
 ```
-3. Change to the lang-33, compile sources and test, and run tests:
+3. Change to the lang-33, compile sources and test, and run tests.
 ```
 cd lang-33
 defects4j compile
 defects4j test
 ```
-4. Get the detailed information of stack trace:
+4. Get the detailed information of stack trace.
 ```
 cd lang-33
 cat failing_tests
 ```
 
 
-The part of stack trace is displayed as follows:
+The stack trace is displayed as follows:
 ```
 --- org.apache.commons.lang3.ClassUtilsTest::testToClass_object
 java.lang.NullPointerException
 	at org.apache.commons.lang3.ClassUtils.toClass(ClassUtils.java:910)
 	at org.apache.commons.lang3.ClassUtilsTest.testToClass_object(ClassUtilsTest.java:910)
 ```
-<img src="./lang-33.png" alt="drawing" width="250">
+<div align="center"> <img src="./lang-33.png" alt="drawing" width="250"/> </div>
 
 5. Generate the input file "config.properties" for JDExtractor based on stack trace:
+
 JDExtractor requires "config.properties" containing the follows content:
 
 | Item        | Description                                                                                     |
@@ -62,7 +66,7 @@ JDExtractor requires "config.properties" containing the follows content:
 
 
 
-The context of "config.properties" is as follows:
+The context of "config.properties" for Lang:33 is as follows:
 ```
 outputPath=lang-33.json
 analysisPath=./lang-33
@@ -135,3 +139,4 @@ You can view the output of JDExtractor in lang-33.json:
 }
 ```
 ## Evaluation Benchmarks
+
