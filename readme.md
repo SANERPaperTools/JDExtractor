@@ -1,4 +1,4 @@
-#JDExtractor
+# JDExtractor
 
 This repository hosts JDExtractor, a tool designed for automatically extracting defect-related methods and null propagation paths from Java programs.
 JDExtractor automatically extract null propagation paths from sources to sink. Sources are the methods that introduce the defect, while sink is the defect method where an exception is triggered.
