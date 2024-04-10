@@ -139,4 +139,25 @@ You can view the output of JDExtractor in lang-33.json:
 }
 ```
 ## Evaluation Benchmarks
+The evaluation benchmarks are shown in benchmark.xlsx. We distinguish different tests that trigger NPE and finally select 22 defects from Defects4J serve as a benchmark. Additionally, we explored other null propagation paths for these 22 defects, and each paths can trigger NPE by constructing test cases.
+
+benchmark.xlsx includes the follows content:
+
+| Item        | Description                                                                                     |
+|-------------|-------------------------------------------------------------------------------------------------|
+| ID                           | the unique identifier                                                          |
+| project                      | project-id in Defects4j                                                        |
+| commit url                   | commit url that fixes the defect                                               |
+| trigger points               | the method which is called by key variable to trigger an exception             |
+| testFile                     | test class in Defects4J                                                        |
+| testMethod                   | test method in Defects4J                                                       |
+| defectFile                   | the path of sink file                                                          |
+| defectMethod                 | the name of sink                                                               |
+| keyVarialbe                  | the name of key variable                                                       |
+| startLine                    | the start line of sink                                                         |
+| endLine                      | the end line of sink                                                           |
+| interestingLine              | the trigger location line                                                      |
+| paths                        | the null propagation paths                                                     |
+
+
 
